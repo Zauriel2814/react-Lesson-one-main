@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import Rating from "@mui/material/Rating";
 
 const DiaryEntry = ({add}) => {
 
     const defaultFormData = {
-        summary:null,
-        currentDate:null,
-        activity:null
+        summary:"",
+        currentDate:"",
+        activity:"",
+        intensityRating:0
     }
     const [formData, setFormData] = useState(defaultFormData);
     const [errorData, setErrorData] = useState({});
@@ -23,14 +25,14 @@ const DiaryEntry = ({add}) => {
         let newErrorData = {};
         let success = false; // Added
         for(const property in formData){
-         newErrorData[property] = formData[property] ? null : "Cannot be empty"; 
+             newErrorData[property] = formData[property] ? null : "Cannot be empty"; 
 
             // Added block
             if(formData[property]){
-                newErrorData[property] = null;
-                success = true;
+                newErrorData[property] = null;                
             }else{
                 newErrorData[property] = "Cannot be empty";                
+                success = false;
             }
         }        
         setErrorData(newErrorData);        
@@ -66,7 +68,14 @@ const DiaryEntry = ({add}) => {
             }
         })
     }
-
+    const ratingOnChange = (e, newValue) => {
+        setFormData((prevState) => {
+            return {
+                ...prevState, 
+                intensityRating:newValue
+            }
+        })
+    }
     return (
         <div className="basis-4/5 border border-red-500 p-4">
             <form onSubmit={handleSubmitClick}>
@@ -92,6 +101,14 @@ const DiaryEntry = ({add}) => {
                             <div className="flex flex-col justify-end text-xs basis-2/12">{activityCharCount} characters</div>
                         </div>
                         <div className="custom-error">{errorData.activity ? errorData.activity : null}</div>
+                    </div>
+                </div>
+                <div className="flex mt-4">
+                    <label className="basis-1/5 custom-display-label">Intensity Rating</label>
+                    <div className="basis-4/5">
+                        <div className="flex">
+                            <Rating value={formData.intensityRating} onChange={ratingOnChange}></Rating>
+                        </div>
                     </div>
                 </div>
                 <div className="mt-4 flex justify-end">

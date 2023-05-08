@@ -5,15 +5,17 @@ import DiaryHistory from "./DiaryHistory";
 const Home = () => {
 
     const [diaryHistories, setDiaryHistories] = useState([]);
+    const [selectedEntry, setSelectedEntry] = useState({});
 
     const addDiaryHistory = (entry) => {
-        setDiaryHistories((prevState) => [...prevState, entry]);
+        setDiaryHistories((prevState) => [...prevState, {...entry, id:crypto.randomUUID()}]);
     }
-    console.log(diaryHistories)
+    console.log("Selected Entry", selectedEntry)
+    console.log("Diary History:", diaryHistories)
     return (
         <div className="flex">
             <DiaryEntry add={addDiaryHistory} />
-            <DiaryHistory />
+            <DiaryHistory data={diaryHistories} setSelectedEntry={setSelectedEntry} />
         </div>
     );
 }
