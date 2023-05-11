@@ -8,6 +8,10 @@
     @apply border border-gray-300 rounded-lg p-2 w-full;
 }
 
+.input-disabled {
+    @apply bg-gray-100;
+}
+
 .custom-display-label {
     @apply flex flex-col justify-center font-semibold;
 }
@@ -22,4 +26,9 @@
 
 .primary-button {
     @apply border rounded-lg border-blue-300 bg-blue-600 text-white px-4 py-2 hover:bg-blue-500;
+}
+
+li {
+    list-style-type: square;
+    margin-left:1rem;
 }

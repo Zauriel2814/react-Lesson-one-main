@@ -14,7 +14,7 @@ const Home = () => {
     console.log("Diary History:", diaryHistories)
     return (
         <div className="flex">
-            <DiaryEntry add={addDiaryHistory} />
+            <DiaryEntry data={selectedEntry} add={addDiaryHistory} />
             <DiaryHistory data={diaryHistories} setSelectedEntry={setSelectedEntry} />
         </div>
     );
