@@ -37,7 +37,7 @@ const DiaryEntry = ({data, add}) => {
     const validateData = () => {
         console.log("validate data")
         let newErrorData = {};
-        let success = false; // Added
+        let success = true; // Added
         for(const property in formData){
              newErrorData[property] = formData[property] ? null : "Cannot be empty"; 
 
@@ -55,7 +55,6 @@ const DiaryEntry = ({data, add}) => {
     const clearForm = (e) => {
         setFormData(defaultFormData); // Set formData to default
         setErrorData({}); // Set errorData to default
-        e.target.reset(); // Clear values in <form>
     }
 
     const handleSubmitClick = (e) => {        
