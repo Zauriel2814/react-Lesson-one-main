@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import TopMenuContainer from './components/top-menu/container';
-import Home from './pages/home';
+import { Outlet } from "react-router-dom"; // ADDED
 
 function App() {
 
-  const [mountHome, setMountHome] = useState(true);
+  const [mountPage, setMountPage] = useState(true);
 
   return (
     <div>
@@ -13,10 +13,11 @@ function App() {
       
       {/* Content Container (to be navigated when click on "home", "report", and "about me" hyperlink in the future) */}
       <div className="mt-[150px]">
-        { mountHome ? <Home /> : null}
+        { mountPage ? <Outlet /> : null}
       </div>
 
-      <button className="primary-button" onClick={()=>{setMountHome(false)}}>Unmount Home.jsx</button>
+      <button className="primary-button" onClick={()=>{setMountPage(false)}}>Unmount.jsx</button>
+      <button className="primary-button" onClick={()=>{setMountPage(true)}}>Mount.jsx</button>
     </div>
   );
 }
